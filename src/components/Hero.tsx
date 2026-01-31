@@ -67,7 +67,7 @@ export function Hero() {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent"
             >
-              Développeur et Réseaux
+              Développement et Réseaux
             </motion.span>
           </motion.h1>
 
@@ -122,13 +122,28 @@ export function Hero() {
             className="flex gap-4 justify-center"
           >
             {[
-              { icon: Github, label: 'GitHub' },
-              { icon: Linkedin, label: 'LinkedIn' },
-              { icon: Mail, label: 'Email' },
+              // 👇 METS TES VRAIS LIENS ICI ENTRE LES GUILLEMETS
+              { 
+                icon: Github, 
+                label: 'GitHub', 
+                href: 'https://github.com/tomfranzi' 
+              },
+              { 
+                icon: Linkedin, 
+                label: 'LinkedIn', 
+                href: 'https://www.linkedin.com/in/tom-franzi-3b61a6338/' 
+              },
+              { 
+                icon: Mail, 
+                label: 'Email', 
+                href: 'mailto:tomtomfranzi74@gmail.com' // Garde bien le "mailto:" devant l'email
+              },
             ].map((social, index) => (
               <motion.a
                 key={social.label}
-                href="#"
+                href={social.href}       // 👈 C'est ici que le lien s'active !
+                target="_blank"          // Ouvre dans un nouvel onglet
+                rel="noopener noreferrer" // Sécurité
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="p-3 rounded-full bg-accent hover:bg-accent/80 transition-colors"

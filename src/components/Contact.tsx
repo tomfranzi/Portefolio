@@ -4,7 +4,7 @@ import { Mail, MapPin, Send } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 export function Contact() {
   const ref = useRef(null);
