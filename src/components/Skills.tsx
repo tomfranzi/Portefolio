@@ -13,7 +13,7 @@ const skills = [
     category: 'Backend',
     icon: Server,
     color: 'from-green-500/20 to-emerald-500/20',
-    items: ['Node.js', 'Express', 'GraphQL', 'REST API', 'Microservices'],
+    items: ['Node.js', 'PHP', 'SQL / MySQL', 'Python', 'REST API'],
   },
   {
     category: 'Mobile',

@@ -1,10 +1,10 @@
 import { motion, useInView } from 'motion/react';
 import { useRef, useState } from 'react';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send, Phone } from 'lucide-react'; // J'ai ajouté l'icône Phone
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
-import { toast } from 'sonner';
+import { toast } from 'sonner'; // Version corrigée sans le @version
 
 export function Contact() {
   const ref = useRef(null);
@@ -17,9 +17,12 @@ export function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulation d'envoi
+    // Simulation d'envoi (Pour le rendre réel, il faudra utiliser EmailJS plus tard)
     toast.success('Message envoyé avec succès ! Je vous répondrai bientôt.');
     setFormData({ name: '', email: '', message: '' });
+    
+    // Petite astuce : Ouvre le logiciel de mail par défaut
+    window.location.href = `mailto:tomtomfranzi74@gmail.com?subject=Contact depuis le Portfolio&body=${formData.message}`;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -37,7 +40,7 @@ export function Contact() {
         >
           <h2 className="text-4xl md:text-6xl mb-4">Contact</h2>
           <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Un projet en tête ? N'hésitez pas à me contacter
+            Un projet en tête ou une offre de stage ? N'hésitez pas à me contacter.
           </p>
         </motion.div>
 
@@ -50,54 +53,58 @@ export function Contact() {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl mb-6">Restons en contact</h3>
+              <h3 className="text-2xl mb-6">Mes Coordonnées</h3>
               <p className="text-foreground/70 mb-8">
-                Je suis toujours ouvert à de nouvelles opportunités et collaborations.
-                Que ce soit pour un projet, une question ou simplement pour échanger,
-                n'hésitez pas à me contacter !
+                Je suis actuellement à la recherche d'opportunités en alternance ou emploi
+                dans le domaine du développement et des réseaux. Basé sur la région d'Annecy.
               </p>
             </div>
 
             <div className="space-y-4">
-              <motion.div
+              {/* Email */}
+              <motion.a 
+                href="mailto:tomtomfranzi74@gmail.com"
                 whileHover={{ x: 10 }}
-                className="flex items-center gap-4 p-4 bg-accent/50 rounded-xl"
+                className="flex items-center gap-4 p-4 bg-accent/50 rounded-xl cursor-pointer hover:bg-accent transition-colors"
               >
                 <div className="p-3 bg-background rounded-lg">
-                  <Mail size={24} />
+                  <Mail size={24} className="text-primary" />
                 </div>
                 <div>
                   <p className="text-sm text-foreground/70">Email</p>
-                  <p>contact@exemple.com</p>
+                  <p className="font-medium">tomtomfranzi74@gmail.com</p>
                 </div>
-              </motion.div>
+              </motion.a>
 
+              {/* Téléphone (Ajouté depuis ton CV) */}
+              <motion.a 
+                href="tel:+33768490819"
+                whileHover={{ x: 10 }}
+                className="flex items-center gap-4 p-4 bg-accent/50 rounded-xl cursor-pointer hover:bg-accent transition-colors"
+              >
+                <div className="p-3 bg-background rounded-lg">
+                  <Phone size={24} className="text-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-foreground/70">Téléphone</p>
+                  <p className="font-medium">07 68 49 08 19</p>
+                </div>
+              </motion.a>
+
+              {/* Localisation */}
               <motion.div
                 whileHover={{ x: 10 }}
                 className="flex items-center gap-4 p-4 bg-accent/50 rounded-xl"
               >
                 <div className="p-3 bg-background rounded-lg">
-                  <MapPin size={24} />
+                  <MapPin size={24} className="text-primary" />
                 </div>
                 <div>
                   <p className="text-sm text-foreground/70">Localisation</p>
-                  <p>Paris, France</p>
+                  <p className="font-medium">Argonay / Annecy, France</p>
                 </div>
               </motion.div>
             </div>
-
-            {/* Decorative element */}
-            <motion.div
-              animate={{
-                rotate: [0, 360],
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-              className="hidden lg:block w-64 h-64 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-3xl mt-12"
-            />
           </motion.div>
 
           {/* Contact Form */}
@@ -106,11 +113,9 @@ export function Contact() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-accent/20 p-8 rounded-2xl border border-border">
+            <form onSubmit={handleSubmit} className="space-y-6 bg-accent/20 p-8 rounded-2xl border border-border shadow-sm">
               <div>
-                <label htmlFor="name" className="block mb-2">
-                  Nom
-                </label>
+                <label htmlFor="name" className="block mb-2 font-medium">Nom</label>
                 <Input
                   id="name"
                   name="name"
@@ -123,9 +128,7 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block mb-2">
-                  Email
-                </label>
+                <label htmlFor="email" className="block mb-2 font-medium">Email</label>
                 <Input
                   id="email"
                   name="email"
@@ -139,15 +142,13 @@ export function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block mb-2">
-                  Message
-                </label>
+                <label htmlFor="message" className="block mb-2 font-medium">Message</label>
                 <Textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Votre message..."
+                  placeholder="Bonjour Tom, j'ai vu votre portfolio..."
                   rows={6}
                   required
                   className="bg-background resize-none"
@@ -174,7 +175,8 @@ export function Contact() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-20 pt-8 border-t border-border text-center text-foreground/60"
         >
-          <p>© 2026 Portfolio. Développé avec passion ❤️</p>
+          <p>© 2026 Tom Franzi. Tous droits réservés.</p>
+          <p className="text-sm mt-2">Développé avec React, Tailwind & Passion ❤️</p>
         </motion.div>
       </div>
     </section>
