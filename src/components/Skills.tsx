@@ -52,10 +52,10 @@ export function Skills() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="glass-card text-center mb-16 p-8 md:p-12 max-w-4xl mx-auto"
         >
-          <h2 className="text-4xl md:text-6xl mb-4">Compétences</h2>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-6xl mb-4 text-slate-900 font-bold">Compétences</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Technologies et outils que je maîtrise pour créer des solutions complètes
           </p>
         </motion.div>

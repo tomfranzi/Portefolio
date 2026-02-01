@@ -125,7 +125,7 @@
   }
 
   body {
-    @apply bg-transparent text-foreground;
+    @apply text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -184,6 +184,40 @@ html {
   font-size: var(--font-size);
 }
 
-body {
-  background-color: transparent !important;
+/* Style pour les cartes (Glassmorphism Blanc) */
+.glass-card {
+  /* Fond blanc légèrement transparent (80%) */
+  background-color: rgba(255, 255, 255, 0.8); 
+  /* Flou d'arrière-plan (effet verre dépoli) */
+  backdrop-filter: blur(12px); 
+  /* Bordure fine blanche */
+  border: 1px solid rgba(255, 255, 255, 0.5); 
+  /* Ombre douce pour le relief */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05); 
+  /* Coins arrondis */
+  border-radius: 1.5rem; /* = rounded-2xl */
+  /* Espacement interne */
+  padding: 2rem; 
+}
+
+/* Style pour les boutons (Noir pour le contraste) */
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff; /* C'est le fameux text-white */
+  
+  /* Dimensions et police */
+  padding: 0.625rem 1.5rem; /* px-6 py-2.5 */
+  border-radius: 9999px; /* rounded-full */
+  font-weight: 500; /* font-medium */
+  
+  /* Ombres et transitions */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }

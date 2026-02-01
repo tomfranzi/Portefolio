@@ -1,4 +1,4 @@
-import { motion, useInView } from 'motion/react';
+import { motion, useInView } from 'motion/react'; // ou 'framer-motion'
 import { useRef } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 import { Card } from './ui/card';
@@ -41,15 +41,17 @@ export function Projects() {
 
   return (
     <section id="projects" className="min-h-screen py-20 px-6" ref={ref}>
-      <div className="max-w-7xl mx-auto">
+      {/* 👇 Ajout de la classe glass-card */}
+      <div className="glass-card max-w-7xl mx-auto">
+        
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl mb-4">Mes Projets</h2>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-6xl mb-4 text-slate-900 font-bold">Mes Projets</h2>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
             Découvrez une sélection de mes réalisations récentes
           </p>
         </motion.div>
@@ -62,7 +64,9 @@ export function Projects() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+              {/* Carte Projet : Fond blanc translucide et bordures douces */}
+              <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col bg-white/60 backdrop-blur-sm border-white/50">
+                
                 <div className="relative overflow-hidden aspect-video">
                   <motion.img
                     src={project.image}
@@ -71,14 +75,15 @@ export function Projects() {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.3 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-2">
-                    <Button size="sm" variant="secondary" asChild>
+                  {/* Overlay au survol : Dégradé sombre pour bien voir les boutons blancs */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4 gap-2">
+                    <Button size="sm" className="bg-white text-slate-900 hover:bg-white/90" asChild>
                       <a href={project.link} target="_blank" rel="noopener noreferrer">
                         <ExternalLink size={16} className="mr-2" />
                         Voir
                       </a>
                     </Button>
-                    <Button size="sm" variant="secondary" asChild>
+                    <Button size="sm" className="bg-white text-slate-900 hover:bg-white/90" asChild>
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         <Github size={16} className="mr-2" />
                         Code
@@ -88,11 +93,12 @@ export function Projects() {
                 </div>
 
                 <div className="p-6 flex-1 flex flex-col">
-                  <h3 className="text-xl mb-2">{project.title}</h3>
-                  <p className="text-foreground/70 mb-4 flex-1">{project.description}</p>
+                  <h3 className="text-xl font-bold mb-2 text-slate-800">{project.title}</h3>
+                  <p className="text-slate-600 mb-4 flex-1">{project.description}</p>
+                  
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">
+                      <Badge key={tag} variant="secondary" className="bg-white/80 text-slate-700 hover:bg-white border border-slate-100">
                         {tag}
                       </Badge>
                     ))}
