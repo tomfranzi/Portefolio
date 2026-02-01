@@ -1,3 +1,5 @@
+// 1. On importe le fond animé (vérifie que le chemin est bon)
+import { AnimatedBackground } from './components/AnimatedBackground'; 
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { Projects } from './components/Projects';
@@ -8,7 +10,13 @@ import { Toaster } from './components/ui/sonner';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    // 2. J'ai enlevé "bg-background" ici pour laisser la transparence
+    <div className="min-h-screen text-foreground relative">
+      
+      {/* 3. On place le fond ici, tout en haut */}
+      <AnimatedBackground />
+      
+      {/* Le reste du site vient par-dessus */}
       <Navigation />
       <Hero />
       <Projects />
