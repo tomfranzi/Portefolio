@@ -44,7 +44,6 @@ const certifications = [
   '🏆 Vainqueur Challenge IA (1ère Place)',
   'Plongeur Niveau 3 (Certification Internationale)',
   'Initiateur de Plongée (FFESSM)',
-  'Initiateur Secourisme (PSC1)',
   'Permis B & Permis Bateau',
 ];
 

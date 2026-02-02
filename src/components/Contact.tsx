@@ -110,7 +110,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500">Téléphone</p>
-                  <p className="font-medium text-slate-900">07 68 49 08 19</p>
+                  <p className="font-medium text-slate-900">+33 7 68 49 08 19</p>
                 </div>
               </motion.a>
 
@@ -123,7 +123,7 @@ export function Contact() {
                 </div>
                 <div>
                   <p className="text-sm text-slate-500">Localisation</p>
-                  <p className="font-medium text-slate-900">Argonay / Annecy, France</p>
+                  <p className="font-medium text-slate-900">Annecy, France</p>
                 </div>
               </motion.div>
             </div>
