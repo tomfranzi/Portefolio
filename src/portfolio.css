@@ -176,4 +176,3 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
   .portfolio-site #contact .text-center.mb-16 { margin-bottom:36px; }
 }
 @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .portfolio-site *, .portfolio-site *::before,.portfolio-site *::after { animation-duration:.01ms!important; transition-duration:.01ms!important; } [data-reveal] { opacity:1; transform:none; } }
-
