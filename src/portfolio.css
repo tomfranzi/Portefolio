@@ -57,7 +57,7 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
 .orbit { position:absolute; border:1px solid #6c9269; border-radius:50%; aspect-ratio:1; }
 .orbit-one { width:min(77%,280px); opacity:.9; transition:border-color .3s,transform .3s; }
 .orbit-two { width:min(100%,365px); border-style:dashed; opacity:.5; animation:orbit-spin 70s linear infinite; }
-.orbit-dot { position:absolute; width:min(100%,365px); aspect-ratio:1; border-radius:50%; pointer-events:none; animation:orbit-spin 14s linear infinite; }
+.orbit-dot { position:absolute; width:min(100%,365px); aspect-ratio:1; border-radius:50%; pointer-events:none; animation:orbit-spin 32s linear infinite; }
 .orbit-dot::before { content:''; position:absolute; top:-4px; left:50%; width:9px; height:9px; border-radius:50%; background:var(--visual-accent); box-shadow:0 0 18px var(--visual-accent); }
 .orbit-core { z-index:1; width:min(53%,195px); aspect-ratio:1; border-radius:50%; border:0; background:var(--visual-accent); display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 0 80px #b6f17440; transition:background .35s,transform .35s,box-shadow .35s; }
 .orbit-core:hover,.orbit-core:focus-visible { transform:scale(1.06); box-shadow:0 0 95px #b6f17475; }
