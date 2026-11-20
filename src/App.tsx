@@ -50,6 +50,12 @@ const expertise = [
   { number: '04', title: 'Développement', description: 'Création de projets web et automatisation de tâches techniques.', tags: ['React', 'TypeScript', 'Python', 'SQL'] },
 ];
 
+const focusAreas = [
+  { label: 'Réseaux', headline: 'Connecter les idées.', detail: 'Comprendre les flux, relier les systèmes et garder une vue d’ensemble.' },
+  { label: 'Cybersécurité', headline: 'Protéger ce qui compte.', detail: 'Observer, anticiper et renforcer les infrastructures au quotidien.' },
+  { label: 'Développement', headline: 'Construire l’utile.', detail: 'Transformer une idée en outil concret, clair et agréable à utiliser.' },
+];
+
 function useReveal() {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>('[data-reveal]');
@@ -74,6 +80,7 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState('accueil');
   const [filter, setFilter] = useState('Tous');
+  const [focus, setFocus] = useState(0);
   const [progress, setProgress] = useState(0);
   useReveal();
 
@@ -135,9 +142,16 @@ export default function App() {
               <div className="hero-actions"><a className="action action-lime" href="#projets">Explorer mes projets <ArrowUpRight size={18} aria-hidden="true" /></a><a className="action action-outline" href="#parcours">Découvrir mon parcours</a></div>
               <div className="hero-social" aria-label="Mes liens"><a href="https://github.com/tomfranzi" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Tom Franzi"><Github size={19} /></a><a href="https://www.linkedin.com/in/tom-franzi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Tom Franzi"><Linkedin size={19} /></a><a href="mailto:tomtomfranzi74@gmail.com" aria-label="Envoyer un email à Tom Franzi"><Mail size={19} /></a><span>Retrouvez-moi en ligne</span></div>
             </div>
-            <div className="hero-visual" aria-hidden="true">
-              <div className="visual-top"><span>01 / 04 — À PROPOS</span><span className="visual-spark">✳</span></div>
-              <div className="visual-center"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><div className="orbit-core"><span>TF</span></div><span className="orbit-label orbit-label-top">RÉSEAUX</span><span className="orbit-label orbit-label-left">SYSTÈMES</span><span className="orbit-label orbit-label-right">CODE</span></div>
+            <div className="hero-visual" data-focus={focus} aria-label="Explorer mes domaines de prédilection">
+              <div className="visual-top"><span>CHOISISSEZ UN DOMAINE</span><span className="visual-spark" aria-hidden="true">✳</span></div>
+              <div className="visual-center">
+                <div className="orbit orbit-one" aria-hidden="true" /><div className="orbit orbit-two" aria-hidden="true" /><div className="orbit-dot" aria-hidden="true" />
+                <button type="button" className="orbit-core" onClick={() => setFocus((current) => (current + 1) % focusAreas.length)} aria-label={`Explorer le domaine suivant après ${focusAreas[focus].label}`}><span className="signature-script">Tom</span><span className="signature-surname">FRANZI</span></button>
+                <button type="button" className={`orbit-label orbit-label-top ${focus === 0 ? 'selected' : ''}`} aria-pressed={focus === 0} onClick={() => setFocus(0)}>RÉSEAUX</button>
+                <button type="button" className={`orbit-label orbit-label-left ${focus === 1 ? 'selected' : ''}`} aria-pressed={focus === 1} onClick={() => setFocus(1)}>CYBER</button>
+                <button type="button" className={`orbit-label orbit-label-right ${focus === 2 ? 'selected' : ''}`} aria-pressed={focus === 2} onClick={() => setFocus(2)}>CODE</button>
+              </div>
+              <div className="visual-insight" aria-live="polite" aria-atomic="true"><span>{focusAreas[focus].label} / 0{focus + 1}</span><strong>{focusAreas[focus].headline}</strong><p>{focusAreas[focus].detail}</p></div>
               <div className="visual-bottom"><span>IT / CYBER / CLOUD</span><span>ANNECY — FR</span></div>
             </div>
           </div>
