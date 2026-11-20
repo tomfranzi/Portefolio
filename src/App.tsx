@@ -120,7 +120,7 @@ export default function App() {
           <nav className={`main-nav ${menuOpen ? 'open' : ''}`} id="main-navigation" aria-label="Navigation principale">
             {navigation.map((item) => <a key={item.id} href={`#${item.id}`} className={active === item.id ? 'active' : ''} aria-current={active === item.id ? 'location' : undefined} onClick={() => setMenuOpen(false)}>{item.label}</a>)}
           </nav>
-          <a href="mailto:tomtomfranzi74@gmail.com" className="header-contact">Parlons ensemble <ArrowUpRight size={16} aria-hidden="true" /></a>
+          <a href="#contact" className="header-contact">Parlons ensemble <ArrowUpRight size={16} aria-hidden="true" /></a>
           <button type="button" className="menu-toggle" onClick={() => setMenuOpen((value) => !value)} aria-expanded={menuOpen} aria-controls="main-navigation" aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}>{menuOpen ? <X size={24} /> : <Menu size={24} />}</button>
         </div>
       </header>
