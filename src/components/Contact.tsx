@@ -65,7 +65,7 @@ export function Contact() {
         >
           <h2 className="text-4xl md:text-6xl mb-4 text-slate-900 font-bold">Contact</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Un projet en tête ou une offre de stage ? N'hésitez pas à me contacter.
+            Un projet en tête, une opportunité ou simplement envie d’échanger ? Écrivez-moi.
           </p>
         </motion.div>
 
@@ -80,8 +80,7 @@ export function Contact() {
             <div>
               <h3 className="text-2xl mb-6 text-slate-800 font-semibold">Mes Coordonnées</h3>
               <p className="text-slate-600 mb-8">
-                Je suis actuellement à la recherche d'opportunités en alternance ou emploi
-                dans le domaine du développement et des réseaux. Basé sur la région d'Annecy.
+                Technicien informatique chez Access et étudiant en BTS CIEL, je m’intéresse aux réseaux, à la cybersécurité et aux infrastructures. Basé près d’Annecy.
               </p>
             </div>
 
