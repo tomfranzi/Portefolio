@@ -65,7 +65,7 @@ export function Contact() {
         >
           <h2 className="text-4xl md:text-6xl mb-4 text-slate-900 font-bold">Contact</h2>
           <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-            Un projet en tête ou une offre de stage ? N'hésitez pas à me contacter.
+            Un projet, une opportunité ou une question ? Parlons-en.
           </p>
         </motion.div>
 
@@ -80,8 +80,7 @@ export function Contact() {
             <div>
               <h3 className="text-2xl mb-6 text-slate-800 font-semibold">Mes Coordonnées</h3>
               <p className="text-slate-600 mb-8">
-                Je suis actuellement à la recherche d'opportunités en alternance ou emploi
-                dans le domaine du développement et des réseaux. Basé sur la région d'Annecy.
+                En alternance chez ACCESS GROUP et étudiant en Bachelor ASRC à Saint-Michel Annecy, je m’intéresse aux réseaux, aux infrastructures et à la cybersécurité.
               </p>
             </div>
 
@@ -210,7 +209,7 @@ export function Contact() {
           className="mt-20 pt-8 border-t border-slate-200 text-center text-slate-500"
         >
           <p>© 2026 Tom Franzi. Tous droits réservés.</p>
-          <p className="text-sm mt-2">Développé avec React, Tailwind & Passion ❤️</p>
+          <p className="text-sm mt-2">Développé avec React, curiosité et passion.</p>
         </motion.div>
       </div>
     </section>
