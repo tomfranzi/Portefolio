@@ -82,7 +82,7 @@ export function SolarSystem({ focus, onFocusChange }: SolarSystemProps) {
       const drawOrbit = (index: number, front: boolean) => {
         const domain = domains[index];
         const orbitalRadius = radius * domain.radius;
-        context.lineWidth = focusRef.current === index ? 1.45 : 1;
+        context.lineWidth = focusRef.current === index ? 1.8 : 1.25;
         for (let step = 0; step < 150; step++) {
           const start = project(orbitPoint(orbitalRadius, step * Math.PI * 2 / 150, domain.inclination));
           const end = project(orbitPoint(orbitalRadius, (step + 1) * Math.PI * 2 / 150, domain.inclination));
@@ -90,7 +90,7 @@ export function SolarSystem({ focus, onFocusChange }: SolarSystemProps) {
           context.beginPath();
           context.moveTo(start.x, start.y);
           context.lineTo(end.x, end.y);
-          context.strokeStyle = domain.color + (front ? (focusRef.current === index ? 'bb' : '66') : '34');
+          context.strokeStyle = domain.color + (front ? (focusRef.current === index ? 'dd' : '99') : '45');
           context.stroke();
         }
       };
@@ -123,8 +123,8 @@ export function SolarSystem({ focus, onFocusChange }: SolarSystemProps) {
           const dx = point.x - cx;
           const dy = point.y - cy;
           const distance = Math.max(1, Math.hypot(dx, dy));
-          card.style.left = Math.max(44, Math.min(width - 44, point.x + dx / distance * 24)) + 'px';
-          card.style.top = Math.max(24, Math.min(height - 24, point.y + dy / distance * 26)) + 'px';
+          card.style.left = Math.max(48, Math.min(width - 48, point.x + dx / distance * 68)) + 'px';
+          card.style.top = Math.max(24, Math.min(height - 24, point.y + dy / distance * 60)) + 'px';
           card.style.zIndex = point.depth >= 0 ? '7' : '3';
         }
       });
