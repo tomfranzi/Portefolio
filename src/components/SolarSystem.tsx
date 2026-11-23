@@ -126,7 +126,7 @@ export function SolarSystem({ focus, onFocusChange }: SolarSystemProps) {
         if (!card) return;
         const scale = Math.max(0.88, Math.min(1.1, point.scale));
         card.style.transform = `translate3d(${point.x.toFixed(2)}px,${point.y.toFixed(2)}px,0) translate(-50%,-50%) scale(${scale.toFixed(3)})`;
-        const layer = point.depth >= 0 ? '7' : '3';
+        const layer = focusRef.current === index ? '8' : point.depth >= 0 ? '7' : '3';
         if (card.style.zIndex !== layer) card.style.zIndex = layer;
       });
       frame = requestAnimationFrame(render);
@@ -147,7 +147,7 @@ export function SolarSystem({ focus, onFocusChange }: SolarSystemProps) {
     const camera = cameraRef.current;
     if (!camera.dragging) return;
     camera.targetYaw += (event.clientX - camera.lastX) * 0.007;
-    camera.targetPitch = Math.max(-1.15, Math.min(-0.2, camera.targetPitch + (event.clientY - camera.lastY) * 0.006));
+    camera.targetPitch = Math.max(-1.12, Math.min(-0.55, camera.targetPitch - (event.clientY - camera.lastY) * 0.006));
     camera.lastX = event.clientX;
     camera.lastY = event.clientY;
   };
