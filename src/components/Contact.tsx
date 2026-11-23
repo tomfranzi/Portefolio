@@ -1,5 +1,5 @@
 import { motion, useInView } from 'motion/react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Mail, MapPin, Send, Phone, Loader2 } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -7,7 +7,9 @@ import { Textarea } from './ui/textarea';
 import { toast } from 'sonner';
 import emailjs from '@emailjs/browser';
 
-export function Contact() {
+const CV_REQUEST_MESSAGE = 'Bonjour Tom, je souhaiterais recevoir votre CV. Merci d’avance pour votre retour.';
+
+export function Contact({ cvRequestCount }: { cvRequestCount: number }) {
   const ref = useRef(null);
   const formRef = useRef<HTMLFormElement>(null); // Référence pour le formulaire
   const isInView = useInView(ref, { once: true, amount: 0.2 });
@@ -18,6 +20,12 @@ export function Contact() {
     email: '',
     message: '',
   });
+
+  useEffect(() => {
+    if (cvRequestCount > 0) {
+      setFormData((current) => ({ ...current, message: CV_REQUEST_MESSAGE }));
+    }
+  }, [cvRequestCount]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -135,6 +143,7 @@ export function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 bg-white/40 p-8 rounded-2xl border border-white/50 shadow-sm">
+              {formData.message === CV_REQUEST_MESSAGE && <p className="cv-request-hint" role="status">Demande de CV préparée. Indiquez votre nom et votre email, puis envoyez-moi le message.</p>}
               <div>
                 <label htmlFor="name" className="block mb-2 font-medium text-slate-700">Nom</label>
                 <Input
@@ -187,7 +196,7 @@ export function Contact() {
                   </>
                 ) : (
                   <>
-                    <span>Envoyer le message</span>
+                    <span>{formData.message === CV_REQUEST_MESSAGE ? "Envoyer ma demande de CV" : "Envoyer le message"}</span>
                     <motion.div
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
