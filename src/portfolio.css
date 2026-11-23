@@ -55,34 +55,20 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
 .hero-visual::before { content:''; position:absolute; inset:0; opacity:.25; background-image:linear-gradient(#68866b 1px,transparent 1px),linear-gradient(90deg,#68866b 1px,transparent 1px); background-size:34px 34px; mask-image:linear-gradient(to bottom,transparent,black 30%,black 80%,transparent); }
 .visual-top,.visual-bottom { position:relative; z-index:2; display:flex; justify-content:space-between; align-items:center; color:#b2c6b4; font-size:11px; font-weight:700; letter-spacing:.13em; }
 .visual-spark { font-size:28px; color:var(--lime); line-height:1; }
-.visual-center { position:absolute; inset:10% 5% 27%; display:grid; place-items:center; perspective:900px; }
-.solar-system { position:relative; width:min(100%,390px); aspect-ratio:1; display:grid; place-items:center; transform-style:preserve-3d; transition:transform .7s ease; }
-.hero-visual:hover .solar-system { transform:rotateY(4deg) rotateX(3deg); }
-.solar-glow { position:absolute; width:76%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,#c6f27720 0,transparent 68%); filter:blur(10px); pointer-events:none; }
-.orbit-track { --orbit-duration:240s; --planet-color:#c6f277; position:absolute; top:50%; left:50%; width:63%; aspect-ratio:1; border:1px solid #87a87b99; border-radius:50%; transform:translate(-50%,-50%) rotateX(55deg) rotateZ(-13deg); transform-style:preserve-3d; box-shadow:0 0 22px #c6f2770a,inset 0 0 18px #c6f2770a; pointer-events:none; }
-.orbit-track::before { content:''; position:absolute; inset:5%; border:1px dashed #9ab79a45; border-radius:50%; }
-.orbit-track-2 { --orbit-duration:310s; --planet-color:#92e4ce; width:83%; border-color:#92e4ce88; transform:translate(-50%,-50%) rotateX(59deg) rotateZ(18deg); }
-.orbit-track-3 { --orbit-duration:390s; --planet-color:#b7caff; width:100%; border-color:#b7caff70; border-style:dashed; transform:translate(-50%,-50%) rotateX(63deg) rotateZ(-22deg); }
-.orbit-motion { position:absolute; inset:0; border-radius:50%; animation:orbit-spin var(--orbit-duration) linear infinite; transform-style:preserve-3d; }
-.orbit-track-1 .orbit-motion { animation-delay:-26s; }
-.orbit-track-2 .orbit-motion { animation-delay:-127s; }
-.orbit-track-3 .orbit-motion { animation-delay:-275s; }
-.hero-visual:hover .orbit-motion,.hero-visual:focus-within .orbit-motion { animation-play-state:paused; }
-.planet-sphere { position:absolute; top:-15px; left:50%; width:30px; height:30px; border-radius:50%; transform:translateX(-50%) rotateX(-60deg); background:radial-gradient(circle at 32% 28%,#fff 0,var(--planet-color) 26%,#436a53 75%,#183025 100%); box-shadow:0 0 14px var(--planet-color),inset -5px -6px 9px #10201a8c; transition:box-shadow .3s; }
-.orbit-track.selected .planet-sphere { box-shadow:0 0 26px var(--planet-color),inset -5px -6px 9px #10201a8c; }
-.orbit-card { --planet-color:#c6f277; position:absolute; z-index:6; border:1px solid color-mix(in srgb,var(--planet-color) 60%,transparent); border-radius:8px; min-width:94px; padding:9px 12px; background:#1a3029f2; color:#f4f7ef; display:flex; flex-direction:column; align-items:center; gap:3px; box-shadow:0 8px 22px #0b1a1599; backdrop-filter:blur(7px); cursor:pointer; transition:background .25s,border-color .25s,color .25s,box-shadow .25s; }
-.orbit-card small { font:600 8px 'DM Sans',sans-serif; letter-spacing:.1em; white-space:nowrap; opacity:.75; }
-.orbit-card strong { font:700 11px 'Space Grotesk',sans-serif; letter-spacing:.08em; white-space:nowrap; }
-.orbit-card-1 { top:5%; left:50%; transform:translateX(-50%); }
-.orbit-card-2 { --planet-color:#92e4ce; left:-1%; bottom:20%; }
-.orbit-card-3 { --planet-color:#b7caff; right:-1%; top:34%; }
-.orbit-card:hover,.orbit-card.selected { color:#17251d; background:var(--planet-color); border-color:var(--planet-color); box-shadow:0 0 26px color-mix(in srgb,var(--planet-color) 45%,transparent); }
-.orbit-card:focus-visible { outline:3px solid var(--planet-color); outline-offset:5px; }
-.orbit-core { position:relative; z-index:4; width:47%; aspect-ratio:1; border-radius:50%; border:1px solid #e7ffba99; background:radial-gradient(circle at 30% 25%,#f6ffd9 0,var(--visual-accent) 38%,#86b648 78%,#335139 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:0 0 35px #c6f2776b,0 0 110px #c6f27735,inset -14px -20px 32px #16322155; transition:background .4s,box-shadow .4s,transform .4s; cursor:pointer; }
-.orbit-core::after { content:''; position:absolute; inset:8%; border:1px solid #fff8; border-radius:50%; opacity:.5; pointer-events:none; }
-.orbit-core:hover,.orbit-core:focus-visible { transform:scale(1.05); box-shadow:0 0 45px #c6f27791,0 0 130px #c6f27755,inset -14px -20px 32px #16322155; }
-.signature-script { font:700 clamp(56px,6vw,82px) 'Caveat',cursive; color:#192820; line-height:.83; transform:rotate(-8deg) translateY(-3px); }
-.signature-surname { font:700 clamp(12px,1.1vw,15px) 'Space Grotesk',sans-serif; letter-spacing:.22em; color:#192820; margin-top:10px; margin-left:5px; }
+.visual-center { position:absolute; inset:10% 4% 26%; z-index:1; }
+.solar-stage { position:relative; width:100%; height:100%; min-height:280px; touch-action:pan-y; cursor:grab; user-select:none; }
+.solar-stage:active { cursor:grabbing; }
+.solar-stage canvas { width:100%; height:100%; display:block; pointer-events:none; }
+.solar-signature { position:absolute; left:50%; top:52%; transform:translate(-50%,-50%); width:130px; height:130px; padding:0; border:0; border-radius:50%; background:transparent; display:flex; flex-direction:column; align-items:center; justify-content:center; z-index:5; cursor:pointer; transition:scale .25s; }
+.solar-signature:hover { scale:1.06; }
+.solar-signature:focus-visible,.solar-card:focus-visible { outline:2px solid #f6ffdc; outline-offset:4px; }
+.signature-script { font:700 68px 'Caveat',cursive; color:#192820; line-height:.82; transform:rotate(-8deg) translateY(-3px); }
+.signature-surname { font:700 12px 'Space Grotesk',sans-serif; letter-spacing:.22em; color:#192820; margin:8px 0 0 5px; }
+.solar-card { position:absolute; z-index:10; transform:translate(-50%,-50%); min-width:84px; padding:7px 11px; border:1px solid color-mix(in srgb,var(--planet-color) 60%,transparent); border-radius:8px; background:#152b24e8; color:#f4f7ef; display:flex; flex-direction:column; align-items:center; gap:2px; box-shadow:0 7px 24px #0b1a15aa; backdrop-filter:blur(8px); cursor:pointer; white-space:nowrap; transition:background .25s,border-color .25s,color .25s,box-shadow .25s; }
+.solar-card-index { font:600 8px 'DM Sans',sans-serif; letter-spacing:.12em; opacity:.8; }
+.solar-card strong { font:700 11px 'Space Grotesk',sans-serif; letter-spacing:.1em; }
+.solar-card:hover,.solar-card.selected { color:#17251d; background:var(--planet-color); border-color:var(--planet-color); box-shadow:0 0 25px color-mix(in srgb,var(--planet-color) 50%,transparent); }
+.solar-hint { position:absolute; bottom:0; left:0; right:0; text-align:center; color:#a6baa9; font:700 9px 'DM Sans',sans-serif; letter-spacing:.17em; pointer-events:none; }
 .visual-insight { position:absolute; z-index:3; bottom:55px; left:26px; right:26px; padding:13px 18px 14px; border-left:3px solid var(--visual-accent); background:#15291fdc; border-radius:0 8px 8px 0; backdrop-filter:blur(8px); }
 .visual-insight span { display:block; color:var(--visual-accent); font-size:10px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; }
 .visual-insight strong { display:block; margin:3px 0 2px; color:#f4f7ef; font:600 18px 'Space Grotesk',sans-serif; letter-spacing:-.03em; }
@@ -178,7 +164,6 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
 .back-to-top svg { transform:rotate(180deg); }
 [data-reveal] { opacity:0; transform:translateY(18px); transition:opacity .65s,transform .65s; }
 [data-reveal].is-visible { opacity:1; transform:none; }
-@keyframes orbit-spin { to { transform:rotate(360deg); } }
 
 @media(max-width:1100px) { .header-contact { display:none; } .hero-grid { gap:30px; } .project-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .expertise-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(max-width:760px) {
@@ -210,18 +195,16 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
   .brand-name { display:none; }
   .hero-grid { padding-block:62px 62px; }
   .hero-copy h1 { font-size:clamp(51px,13vw,68px); }
-  .hero-visual { min-height:400px; }
-  .visual-center { inset:13% 8% 33%; }
-  .solar-system { width:min(100%,300px); }
-  .orbit-core { width:48%; }
-  .orbit-card { min-width:76px; padding:7px 8px; }
-  .orbit-card strong { font-size:9px; }
-  .orbit-card small { font-size:7px; }
-  .orbit-card-2 { left:0; bottom:24%; }
-  .orbit-card-3 { right:0; top:32%; }
-  .planet-sphere { width:22px; height:22px; top:-11px; }
-  .signature-script { font-size:58px; }
-  .signature-surname { font-size:11px; margin-top:7px; }
+  .hero-visual { min-height:470px; }
+  .visual-center { inset:10% 3% 29%; }
+  .solar-stage { min-height:0; }
+  .solar-signature { width:92px; height:92px; }
+  .signature-script { font-size:49px; }
+  .signature-surname { font-size:9px; margin-top:6px; }
+  .solar-card { min-width:68px; padding:5px 7px; }
+  .solar-card strong { font-size:9px; }
+  .solar-card-index { font-size:6px; }
+  .solar-hint { font-size:7px; }
   .visual-insight { left:18px; right:18px; bottom:48px; padding:10px 13px; }
   .visual-insight strong { font-size:16px; }
   .visual-insight p { font-size:10px; }
@@ -238,4 +221,4 @@ html { scroll-behavior:smooth; scroll-padding-top:88px; }
   .portfolio-site #contact form { padding:20px; }
   .portfolio-site #contact .text-center.mb-16 { margin-bottom:36px; }
 }
-@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .portfolio-site *, .portfolio-site *::before,.portfolio-site *::after { animation:none!important; transition-duration:.01ms!important; } .portfolio-site .orbit-motion { animation:orbit-spin var(--orbit-duration) linear infinite!important; } [data-reveal] { opacity:1; transform:none; } }
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .portfolio-site *, .portfolio-site *::before,.portfolio-site *::after { animation:none!important; transition-duration:.01ms!important; } [data-reveal] { opacity:1; transform:none; } }

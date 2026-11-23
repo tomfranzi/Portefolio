@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowUpRight, ChevronDown, Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 import { Contact } from './components/Contact';
+import { SolarSystem } from './components/SolarSystem';
 import { Toaster } from './components/ui/sonner';
 import './portfolio.css';
 
@@ -145,22 +146,7 @@ export default function App() {
             </div>
             <div className="hero-visual" data-focus={focus} aria-label="Explorer mes domaines de prédilection">
               <div className="visual-top"><span>CHOISISSEZ UN DOMAINE</span><span className="visual-spark" aria-hidden="true">✳</span></div>
-              <div className="visual-center">
-                <div className="solar-system" role="group" aria-label="Explorer mes trois domaines">
-                  <div className="solar-glow" aria-hidden="true" />
-                  {focusAreas.map((area, index) => (
-                    <div className={`orbit-track orbit-track-${index + 1} ${focus === index ? 'selected' : ''}`} key={area.label} aria-hidden="true">
-                      <div className="orbit-motion"><span className="planet-sphere" /></div>
-                    </div>
-                  ))}
-                  {focusAreas.map((area, index) => (
-                    <button type="button" key={area.label} className={`orbit-card orbit-card-${index + 1} ${focus === index ? 'selected' : ''}`} aria-pressed={focus === index} aria-label={`Découvrir ${area.label}`} onClick={() => setFocus(index)}>
-                      <small>DOMAINE / 0{index + 1}</small><strong>{['RÉSEAUX', 'CYBER', 'CODE'][index]}</strong>
-                    </button>
-                  ))}
-                  <button type="button" className="orbit-core" onClick={() => setFocus((current) => (current + 1) % focusAreas.length)} aria-label={`Explorer le domaine suivant après ${focusAreas[focus].label}`}><span className="signature-script">Tom</span><span className="signature-surname">FRANZI</span></button>
-                </div>
-              </div>
+              <div className="visual-center"><SolarSystem focus={focus} onFocusChange={setFocus} /></div>
               <div className="visual-insight" aria-live="polite" aria-atomic="true"><span>{focusAreas[focus].label} / 0{focus + 1}</span><strong>{focusAreas[focus].headline}</strong><p>{focusAreas[focus].detail}</p></div>
               <div className="visual-bottom"><span>IT / CYBER / CLOUD</span><span>ANNECY — FR</span></div>
             </div>
