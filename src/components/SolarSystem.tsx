@@ -8,7 +8,7 @@ type SolarSystemProps = {
 const domains = [
   { label: 'RÉSEAUX', name: 'Réseaux', color: '#c6f277', period: 240, phase: -0.55, radius: 0.65, inclination: -0.12 },
   { label: 'CYBER', name: 'Cybersécurité', color: '#92e4ce', period: 310, phase: 2.52, radius: 0.84, inclination: 0.18 },
-  { label: 'CODE', name: 'Développement', color: '#b7caff', period: 390, phase: 4.65, radius: 1.02, inclination: -0.2 },
+  { label: 'CODE', name: 'Développement', color: '#b7caff', period: 390, phase: 5.3, radius: 1.02, inclination: -0.2 },
 ];
 
 type Point3 = { x: number; y: number; z: number };
