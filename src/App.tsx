@@ -149,14 +149,14 @@ export default function App() {
                 <div className="solar-system" role="group" aria-label="Explorer mes trois domaines">
                   <div className="solar-glow" aria-hidden="true" />
                   {focusAreas.map((area, index) => (
-                    <div className={`orbit-track orbit-track-${index + 1}`} key={area.label}>
-                      <div className="orbit-motion">
-                        <button type="button" className={`orbit-planet ${focus === index ? 'selected' : ''}`} aria-pressed={focus === index} aria-label={`Découvrir ${area.label}`} onClick={() => setFocus(index)}>
-                          <span className="planet-sphere" aria-hidden="true" />
-                          <span className="planet-card"><small>DOMAINE / 0{index + 1}</small><strong>{['RÉSEAUX', 'CYBER', 'CODE'][index]}</strong></span>
-                        </button>
-                      </div>
+                    <div className={`orbit-track orbit-track-${index + 1} ${focus === index ? 'selected' : ''}`} key={area.label} aria-hidden="true">
+                      <div className="orbit-motion"><span className="planet-sphere" /></div>
                     </div>
+                  ))}
+                  {focusAreas.map((area, index) => (
+                    <button type="button" key={area.label} className={`orbit-card orbit-card-${index + 1} ${focus === index ? 'selected' : ''}`} aria-pressed={focus === index} aria-label={`Découvrir ${area.label}`} onClick={() => setFocus(index)}>
+                      <small>DOMAINE / 0{index + 1}</small><strong>{['RÉSEAUX', 'CYBER', 'CODE'][index]}</strong>
+                    </button>
                   ))}
                   <button type="button" className="orbit-core" onClick={() => setFocus((current) => (current + 1) % focusAreas.length)} aria-label={`Explorer le domaine suivant après ${focusAreas[focus].label}`}><span className="signature-script">Tom</span><span className="signature-surname">FRANZI</span></button>
                 </div>
